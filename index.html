@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Carrito de compras</title>
+
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+
+    <link rel="stylesheet" type="text/css" href="assets/b4/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+    <!-- libreria de animaciones -->
+    <link rel="stylesheet" type="text/css" href="assets/animate/animate.css">
+    <!-- font awesome libreria de iconos -->
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+    <!-- css principal para los productos -->
+    <link rel="stylesheet" href="assets/css/car_main.css">
+
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg space_content navbar-light">
+        <a class="navbar-brand" href="index.html"> 
+            <img class="logo-menu-img" src="assets/images/logo/icon.png" alt="" srcset="">
+            Juguetería Al’’s</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Inicio<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Acerca</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Categorías
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <button class="dropdown-item" onclick="selectCategory('')">Niños</button>
+                        <button class="dropdown-item" onclick="selectCategory('')">Niñas</button>
+                        <button class="dropdown-item" onclick="selectCategory('')">Toy Story</button>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item" onclick="selectAllProducts()">Mostrar todos...</button>
+                    </div>
+                </li>
+            </ul>
+            <form action="search.php" class="form-inline my-2 my-lg-0 mr-2" method="get">
+                <li class="nav-item">
+                    <input type="text" name="value" id="input_search_nav" class="nav-link input-search"
+                        placeholder="Nombre de producto" onkeyup="searchProduct(event)">
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><button type="submit"><i class="fa fa-search"
+                                aria-hidden="true"></i></button> </a>
+                </li>
+            </form>
+
+            <div class="form-inline my-2 my-lg-0 mr-5">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <div class="nav-link dropdown-toggle" id="navbarDropdownUser" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Gerson
+                        </div>
+
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownUser">
+                            <a href="#">
+                                <button class="dropdown-item">Ver pefil <i class="fa fa-eye"
+                                        aria-hidden="true"></i></button>
+                            </a>
+                            <a href="#">
+                                <button class="dropdown-item">Historial <i class="fa fa-history"
+                                        aria-hidden="true"></i></button>
+                            </a>
+                            <a href="#">
+                                <button class="dropdown-item logout-menu">Cerrar sesión <i class="fa fa-power-off"
+                                        aria-hidden="true"></i></button>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a id="price_article_in_car" class="nav-link">$1050</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"> <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <p id="number_articles_in_car">0</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Inicio de carrusel -->
+    <label></label>
+    <div id="carouselExampleIndicators" class="carousel slide space_content" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100" height="500" src="assets/images/banner/banner-3.jpg" alt="First slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" height="500" src="assets/images/banner/banner-2.jpg" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" height="500" src="assets/images/banner/banner-1.jpg" alt="Third slide">
+            </div>
+        </div>
+
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+    <!-- fin del carrusel -->
+
+    <!-- Inicio de contenido -->
+    <!-- color rgb(235, 235, 235) -->
+
+    <div class="container-main">
+        <div class="container-categories">
+            <div class="row mt-md-2 ">
+                <button class="btn btn-block" onclick="selectCategory('1')">
+                    <div class="row">
+                        <div class="col-md-6 text-left">Niños</div>
+                        <div class="col-md-6 text-right">4</div>
+                    </div>
+                </button>
+            </div>
+
+
+            <div class="row mt-md-2 ">
+                <button class="btn btn-block" onclick="selectCategory('1')">
+                    <div class="row">
+                        <div class="col-md-6 text-left">Niñas</div>
+                        <div class="col-md-6 text-right">3</div>
+                    </div>
+                </button>
+            </div>
+
+
+            <div class="row mt-md-2 ">
+                <button class="btn btn-block" onclick="selectCategory('1')">
+                    <div class="row">
+                        <div class="col-md-6 text-left">Toy Story</div>
+                        <div class="col-md-6 text-right">7</div>
+                    </div>
+                </button>
+            </div>
+
+            <div class="row mt-md-2">
+                <button class="btn btn-block" onclick="selectAllProducts()">
+                    <div class="row">
+                        <div class="col-md-6 text-left">Todas las categorías</div>
+                        <div class="col-md-6 text-right">.</div>
+                    </div>
+                </button>
+            </div>
+        </div>
+        <div class="container-products">
+            <div class="container-product shadow-sm rounded">
+                <div class="container-img-product">
+
+                    <img class="img-product" src="assets/images/toys/alien.png" alt="" srcset="">
+                </div>
+                <div class="product-infos">
+                    <div>
+                        <strong>Alien</strong>
+                        <p>$1800</p>
+                    </div>
+                    <div>
+                        <i class="fa fa-shopping-cart" id="ic_car_producto" onclick="newOrder(1)"
+                            aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-product shadow-sm rounded">
+                <div class="container-img-product">
+
+                    <img class="img-product" src="assets/images/toys/hucha1.png" alt="" srcset="">
+                </div>
+                <div class="product-infos">
+                    <div>
+                        <strong>Puerco</strong>
+                        <p>$2000</p>
+                    </div>
+                    <div>
+                        <i class="fa fa-shopping-cart" id="ic_car_producto" onclick="newOrder(1)"
+                            aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-product shadow-sm rounded">
+                <div class="container-img-product">
+
+                    <img class="img-product" src="assets/images/toys/tumblr_static_wheezy.png" alt="" srcset="">
+                </div>
+                <div class="product-infos">
+                    <div>
+                        <strong>Wheezy- Debian</strong>
+                        <p>$9000</p>
+                    </div>
+                    <div>
+                        <i class="fa fa-shopping-cart" id="ic_car_producto" onclick="newOrder(1)"
+                            aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="container-product shadow-sm rounded">
+                <div class="container-img-product">
+
+                    <img class="img-product" src="assets/images/toys/Mrs-Potato-Head.png" alt="" srcset="">
+                </div>
+                <div class="product-infos">
+                    <div>
+                        <strong>Potato Head</strong>
+                        <p>$500</p>
+                    </div>
+                    <div>
+                        <i class="fa fa-shopping-cart" id="ic_car_producto" onclick="newOrder(1)"
+                            aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="container-product shadow-sm rounded">
+                <div class="container-img-product">
+
+                    <img class="img-product" src="assets/images/toys/sargento.png" alt="" srcset="">
+                </div>
+
+                <div class="product-infos">
+                    <div>
+                        <strong>Jessie</strong>
+                        <p>$8000</p>
+                    </div>
+                    <div>
+                        <i class="fa fa-shopping-cart" id="ic_car_producto" onclick="newOrder(1)"
+                            aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="container-product shadow-sm rounded">
+                <div class="container-img-product">
+
+                    <img class="img-product" src="assets/images/toys/n504c2ae94d9b6.png" alt="" srcset="">
+                </div>
+                <div class="product-infos">
+                    <div>
+                        <strong>Chicaros</strong>
+                        <p>$500</p>
+                    </div>
+                    <div>
+                        <i class="fa fa-shopping-cart" id="ic_car_producto" onclick="newOrder(1)"
+                            aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="container-product shadow-sm rounded">
+                <div class="container-img-product">
+
+                    <img class="img-product" src="assets/images/toys/94bcfc9a05eef347fe0025e3869d5b33.png" alt=""
+                        srcset="">
+                </div>
+                <div class="product-infos">
+                    <div>
+                        <strong>Caballo</strong>
+                        <p>$500</p>
+                    </div>
+                    <div>
+                        <i class="fa fa-shopping-cart" id="ic_car_producto" onclick="newOrder(1)"
+                            aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Fin de contenido principal -->
+
+    <!-- Inicio de píe de página -->
+    <footer class="page-footer font-small mdb-color pt-4">
+        <div class="container text-center text-md-left">
+            <div class="row text-center text-md-left mt-3 pb-3">
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3 text-center">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">Productos</h6>
+                    <p>
+                        <a href="#!">Carritos</a>
+                    </p>
+                    <p>
+                        <a href="#!">Muñecas</a>
+                    </p>
+                    <p>
+                        <a href="#!">Juegos de mesa</a>
+                    </p>
+
+                </div>
+
+                <hr class="w-100 clearfix d-md-none">
+
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3 text-center">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">Contactos</h6>
+                    <p>
+                        <a href="#!"><i class="fa fa-phone" aria-hidden="true"></i> 0188 40 55 5555</a>
+                    </p>
+                    <p>
+                        <a href="#!"><i class="fa fa-address-book" aria-hidden="true"></i> sales@Al.com</a>
+                    </p>
+                </div>
+
+                <hr class="w-100 clearfix d-md-none">
+
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3 text-center">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">Redes sociales</h6>
+                    <p class="mt-3">
+                        <a href="#!"><i class="fa fa-facebook-f" aria-hidden="true"></i> </a> &nbsp &nbsp
+                        <a href="#!"><i class="fa fa-twitter" aria-hidden="true"></i> </a> &nbsp &nbsp
+                        <a href="#!"><i class="fa fa-google" aria-hidden="true"></i> </a> &nbsp &nbsp
+                        <a href="#!"><i class="fa fa-pinterest" aria-hidden="true"></i> </a>
+                    </p>
+
+                </div>
+
+                <hr class="w-100 clearfix d-md-none">
+
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3 text-center">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">Formas de pago</h6>
+                    <p>
+                        <a href="#!"><i class="fa fa-cc-visa" aria-hidden="true"></i> </a> &nbsp
+                        <a href="#!"><i class="fa fa-cc-mastercard" aria-hidden="true"></i> </a> &nbsp
+                        <a href="#!"><i class="fa fa-cc-mastercard" aria-hidden="true"></i> </a> &nbsp
+                        <a href="#!"><i class="fa fa-cc-paypal" aria-hidden="true"></i> </a>
+                    </p>
+                    <p>
+                        <a href="#!"><i class="fa fa-cc-mastercard" aria-hidden="true"></i> </a> &nbsp
+                        <a href="#!"><i class="fa fa-cc-amex" aria-hidden="true"></i> </a> &nbsp
+                        <a href="#!"><i class="fa fa-cc-paypal" aria-hidden="true"></i> </a> &nbsp
+                        <a href="#!"><i class="fa fa-cc-visa" aria-hidden="true"></i> </a>
+                    </p>
+                </div>
+
+            </div>
+
+            <hr>
+
+            <div class="row d-flex">
+                <div class="col-md col-lg">
+                    <p class="text-center">© 2019 Copyright:
+                        <a href="#">
+                            <strong> Juguetería Al’’s</strong>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Fin de pie de página -->
+
+    <script src="assets/pouch_db/pouchdb-7.1.1.min.js"></script>
+    <script src="assets/jquery/jquery.slim.min.js"></script>
+    <script src="assets/tether/tether.min.js"></script>
+    <script src="assets/b4/js/bootstrap.min.js"></script>
+    <script src="assets/js/manager_db.js"></script>
+    <script src="assets/js/manager_car.js"></script>
+    <script src="assets/js/index_main.js"></script>
+</body>
+
+</html>

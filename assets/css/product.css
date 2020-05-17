@@ -1,0 +1,23 @@
+.course_data {
+    width: 40%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.carousel-inner img {
+    width: 40%;
+    height: 250px;
+}
+
+.secundary_img_product {
+    width: 150px;
+    height: 150px;
+    border-radius: 30px;
+}
+
+.imagen_product_main {
+    width: 150px;
+    height: 150px;
+    border-radius: 30px;
+}
